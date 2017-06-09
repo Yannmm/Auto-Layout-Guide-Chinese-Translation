@@ -25,7 +25,7 @@
 
 要进一步调整布局，可以使用"属性（Attributes）"栏，修改堆叠视图的属性。例如，下面的例子中，堆叠视图的间距为8pt，分布方式为均匀填充。
 
-![图3]()
+![图3](http://ohqrsnfvu.bkt.clouddn.com/auto-layout-guide/%E5%9B%BE3.png)
 
 堆叠视图在布局内容时，还会参考子视图的内缩（content-hugging）和外扩（compression-resistance）属性。可以在"尺寸（Size）"栏中进行修改。
 
@@ -33,7 +33,7 @@
 
 另外，堆叠视图中还可以嵌套其他堆叠视图，从而构建更为复杂的布局。
 
-![ 图4]()
+![图4](http://ohqrsnfvu.bkt.clouddn.com/auto-layout-guide/%E5%9B%BE4.png)
 
 总而言之，如果可能，尽量使用堆叠视图进行布局。如若不能，再使用约束来达成目标。
 
