@@ -13,7 +13,7 @@
 
 等式范例如下：
 
-![图5]()
+![图5](http://ohqrsnfvu.bkt.clouddn.com/auto-layout-guide/%E5%9B%BE5.png)
 
 上述约束规定红色视图的前部位于蓝色视图后部后方8pt的位置。代表这个约束的等式由如下部分组成：
 
@@ -30,7 +30,7 @@
 
 对于自动布局来说，属性就是可以被约束的特征。总体上，这包括视图的四边（前部，后部，上部，下部），以及宽，高，水平和垂直方向上的中心。文字视图还会有一到两个基准线。
 
-![图6]()
+![图6](http://ohqrsnfvu.bkt.clouddn.com/auto-layout-guide/%E5%9B%BE6.png)
 
 所有属性，详见枚举[NSLayoutAttribute](https://developer.apple.com/documentation/uikit/nslayoutattribute)。
 
@@ -120,7 +120,7 @@ View.width = 0.5 * View.height + 0.0
 
 总之，视图的尺寸和位置都必须被约束。假设父视图的尺寸已经确定（例如，父视图是iOS中一个场景（scene）的根视图），对于每个子视图来说，要创建一个明确，可满足的布局，每个方向上各需要两条约束（不包括父视图的约束）。然而，至于使用哪些约束，可以有很多选择。例如，下面的三个布局都是明确，可满足的（这里只显示了水平方向上的约束）。
 
-![图7]()
+![图7](http://ohqrsnfvu.bkt.clouddn.com/auto-layout-guide/%E5%9B%BE7.png)
 
 - 第一个布局相对于父视图的前部约束视图的前部，并给了视图一个固定宽度。因此，尾部的位置可以根据这两条约束确定。
 - 第二个布局相对于父视图的前部约束视图的前部，并相对于父视图的尾部约束视图的尾部。因此，视图的宽度可以根据这两条约束，以及父视图宽度确定。
@@ -136,11 +136,11 @@ View.width = 0.5 * View.height + 0.0
 
 下图显示了它们在设备呈垂直和水平方向时的效果：
 
-![图8]()
+![图8](http://ohqrsnfvu.bkt.clouddn.com/auto-layout-guide/%E5%9B%BE8.png)
 
 该怎样添加约束呢？下图的方式简单明了：
 
-![图9]()
+![图9](http://ohqrsnfvu.bkt.clouddn.com/auto-layout-guide/%E5%9B%BE9.png)
 
 所使用的约束如下：
 
@@ -162,7 +162,7 @@ Red.width = 1.0 * Blue.width + 0.0
 
 当然，布局的方式不仅一种。下述方式同样有效：
 
-![图10]() 
+![图10](http://ohqrsnfvu.bkt.clouddn.com/auto-layout-guide/%E5%9B%BE10.png) 
 
 没有根据父视图约束蓝色视图的上部和下部，而是根据红色视图。具体约束如下：
 
