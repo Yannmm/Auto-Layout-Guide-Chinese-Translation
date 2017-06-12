@@ -26,7 +26,7 @@
 
 大多数约束定义界面上两个元素之间的关系。这些元素不是视图，就是布局参照。约束还可以定义同一个元素两个属性之间的关系。例如，为一个元素的宽和高设定比例关系。设置可以直接为元素的宽或高设置常量。设定常量时，第二个元素为空，第二个属性为`Not An Attribute`，倍数为0.0。
 
-### Auto Layout Attributes（自动布局属性）
+#### Auto Layout Attributes（自动布局属性）
 
 对于自动布局来说，属性就是可以被约束的特征。总体上，这包括视图的四边（前部，后部，上部，下部），以及宽，高，水平和垂直方向上的中心。文字视图还会有一到两个基准线。
 
@@ -36,7 +36,7 @@
 
 >虽然OS X和iOS都使用这个枚举，但它们对某些值的解释不同。所以，查看文档时，要注意区分平台。
 
-### Sample Equations（等式样例）
+#### Sample Equations（等式样例）
 
 不同的参数和属性，创造出代表不同约束的等式。例如，定义两个视图之间的间距，让视图一边对齐，定义两个视图之间的相对大小关系，甚至定义视图自身的宽高比。然而，并非所有的属性都可以互相配对使用。
 
@@ -80,7 +80,7 @@ View.height = 2.0 * View.width + 0.0
 
 ```
 
-### Equality, Not Assignment（相等，而非赋值）
+#### Equality, Not Assignment（相等，而非赋值）
 
 请注意，上例中等式两端是相等关系，而非赋值。
 
@@ -114,7 +114,7 @@ View.width = 0.5 * View.height + 0.0
 2. 常量最好为正数，而非负数。
 3. 如果可能，元素应该按照布局中的顺序出现：自上至下，自左至右，自前至后。
 
-### Creating Nonambiguous, Satisfiable Layouts（创建明确，可满足的约束）
+#### Creating Nonambiguous, Satisfiable Layouts（创建明确，可满足的约束）
 
 自动布局的关键在于代表约束的等式有且仅有唯一解。模糊的约束有一个以上解。无法满足的约束没有解。
 
@@ -192,7 +192,7 @@ Red.width = 1.0 * Blue.width + 0.0
 >
 >另一方面，对于第一中方式，如果想要对齐所有子视图的上部和下部，就要保证相对于父视图，所使用的偏移常量都相同。修改一处，其他地方也要修改。
 
-### Constraint Inequalities（不等关系型约束）
+#### Constraint Inequalities（不等关系型约束）
 
 目前为止，例子中的所有约束都是相等关系，但这并不是全部。约束也可以通过不等关系定义。所以，约束的关系可是相等，大于等于，或小于等于。
 
@@ -223,7 +223,7 @@ Blue.leading <= 1.0 * Red.trailing + 8.0
 
 这种替代方式并不一定可行，因为两个不等约束并不总是等同于一个相等约束。例如，[代码3-3](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/AnatomyofaConstraint.html#//apple_ref/doc/uid/TP40010853-CH9-SW10)中的不等约束限制了视图宽度的范围——但其本身并没有定义宽度的具体值。此时，仍需要定义额外的水平约束，为视图的宽度设置一个上述范围内的具体值。
 
-### Constraint Priorities（约束优先级）
+#### Constraint Priorities（约束优先级）
 
 所有约束的默认优先级都是最高级：必要（reqiured）。自动布局会考虑所有约束，以此为基础计算唯一解，否则，错误出现。无法满足的约束信息会输出至控制台，其中一个约束会被打破（即忽略）。之后，自动布局会针对剩余约束重新计算，直至得出唯一解。更多信息，详见[无法满足的约束](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/ConflictingLayouts.html#//apple_ref/doc/uid/TP40010853-CH19-SW1)。
 
@@ -241,7 +241,7 @@ Blue.leading <= 1.0 * Red.trailing + 8.0
 >
 >更多关于iOS的优先级信息，详见枚举[UILayoutPriority](https://developer.apple.com/documentation/uikit/uilayoutpriority)。至于OS X，详见章节布局优先级常量。
 
-### Intrinsic Content Size（固有尺寸）
+#### Intrinsic Content Size（固有尺寸）
 
 目前为止，所有的例子中视图的尺寸和位置都得到了约束。然而，某些视图会根据其当前内容拥有一个尺寸，被称为固有尺寸。例如，按钮的固有尺寸是其标题的尺寸加上四周边距。（译者：这里指的是按钮只有标题，没有图片的情况）
 
@@ -294,7 +294,7 @@ View.width <= 0.0 * NotAnAttribute + IntrinsicWidth
 - 诸如开关的视图，最好使用固有尺寸。适当调整外扩和内缩优先级，防止变形。
 - 尽量避免设置最高优先级（即"必要"）。对于布局来说，视图尺寸错误总比造成约束冲突要好。如果视图必须使用固有尺寸，将其优先级设置为999。这种方式总能让视图保持固有尺寸，同时也给意外情况留下回旋余地，例如父视图的尺寸要比预想的或大或小。
 
-### Intrinsic Content Size Versus Fitting Size（固有尺寸和可容纳尺寸）
+#### Intrinsic Content Size Versus Fitting Size（固有尺寸和可容纳尺寸）
 
 （译者：这里的可容纳尺寸指的是函数`systemLayoutSizeFittingSize:`的结果。🤔）
 
@@ -307,7 +307,7 @@ View.width <= 0.0 * NotAnAttribute + IntrinsicWidth
 如果需要根据其他视图调整堆叠视图的尺寸（这个视图不属于堆叠视图），要么创建约束，要么相对于这个视图调整堆叠视图内容的外扩和内缩优先级。
 
 
-### Interpreting Values（解释数值）
+#### Interpreting Values（解释数值）
 
 自动布局中数值的单位是点（points）。然而，这些值的意义会根据参与的属性和布局方向的不同具有不同的含义。
 
