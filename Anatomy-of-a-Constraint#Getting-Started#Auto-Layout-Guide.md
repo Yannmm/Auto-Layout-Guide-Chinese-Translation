@@ -263,7 +263,7 @@ UIView和NSView  | 没有
 
 对于自动布局来说，固有尺寸做为约束影响视图的实际尺寸，其通过两个属性，影响视图的宽高。内缩属性代表向内收缩的趋势，以便视图紧紧包裹其内容；外扩属性代表向外伸展的趋势，以便视图的边缘不会裁剪其内容。
 
-![图11]()
+![图11](http://ohqrsnfvu.bkt.clouddn.com/auto-layout-guide/%E5%9B%BE11.png)
 
 代码3-5中通过不等式定义了固有尺寸影响下视图的尺寸。其中`IntrinsicWidth`和`IntrinsicHeight`分别代表固有尺寸的宽和高。
 
