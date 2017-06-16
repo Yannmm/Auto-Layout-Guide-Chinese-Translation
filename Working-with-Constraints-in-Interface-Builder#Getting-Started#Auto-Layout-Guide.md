@@ -191,5 +191,26 @@
 
 布局参照遵守协议[UILayoutSupport](https://developer.apple.com/documentation/uikit/uilayoutsupport)，其中有一个名为`length`的属性，负责表示布局参照与视图对应边缘的距离。特别要注意：
 
-- 对于上部布局参照，`length`表示控制器视图的上方到覆盖视图的最下方栏位的下部之间的距离。
-- 
+- 对于上部布局参照，`length`表示控制器视图的上方到覆盖视图的最下方栏位的下部之间的距离，单位pt。
+- 对于下部布局参照，`length`表示控制器视图的下方到覆盖视图的栏位的下部之间的距离，单位pt。xxx有问题
+
+布局参照可以作为元素参约束视图的上部，下部，以及高度。通常，我们相对于上方布局参照的下部，或下方布局参照的上部约束视图。另外，布局参照还提供属性`topAnchor `，`bottomAnchor `以及`heightAnchor`，用以简化代码创建约束。
+
+当相对于根视图的上部或下部添加约束时，界面编辑器自动将布局参照作为选项。如果布局参照是视图的最邻近元素，则默认使用布局参照。使用固定工具时，只需点击三角形，就可以按需要在视图的边缘和布局参照之间切换。
+
+##### Layout Margins（布局留白）
+
+自动布局为每个视图都做了留白。系统推荐子视图和视图的边界之间留有空隙。我们可以通过属性[layoutMargins](https://developer.apple.com/documentation/uikit/uiview/1622566-layoutmargins)或[layoutMarginsGuide](https://developer.apple.com/documentation/uikit/uiview/1622651-layoutmarginsguide)访问视图的留白。通过使用结构体[UIEdgeInsets](https://developer.apple.com/documentation/uikit/uiedgeinsets)设置属性`layoutMargins`，我们可以读取和设置留白。只读属性`layoutMarginsGuide`让我们将留白作为[UILayoutGuide](https://developer.apple.com/documentation/uikit/uilayoutguide)对象访问。此外，使用属性[preservesSuperviewLayoutMargins](https://developer.apple.com/documentation/uikit/uiview/1622653-preservessuperviewlayoutmargins)可以定义视图的留白和父视图留白之间的关系。
+
+视图四周的留白默认为8pt。当然，我们可以根据需要修改。
+
+
+>注意
+>
+>系统会自动设置和管理控制器根视图的留白。上下留白为0pt，以便将视图的内容置于栏位下方（如有栏位）。两侧留白会根据控制器的呈现方式改变，但固定在16pt或20pt。以上这些留白的数值无法修改。
+
+相对于父视图约束视图时，一般使用父视图的留白作为参照，而非边界。在UIKit中，枚举[NSLayoutAttribute](https://developer.apple.com/documentation/uikit/nslayoutattribute)定义了一组属性，分别代表各个方向的留白（上边，下边，前边，后边，左边，右边）。另外还包括考虑到留白水平和垂直中心。
+
+在界面编辑器中，通过在视图间按住control拖拽生成的约束默认使用留白作为参照。使用固定工具时，可以通过勾选"Constrain to marings"来切换。如果勾选，则生成的约束使用父视图的留白做参照。如果未勾选，则参照父视图的边界生成约束。类似的，在属性面板中编辑约束时，两个元素的下拉菜单中都包含选项"Relative to margin（相对留白）"。其作用和"Constrain to margins"一致。
+
+
