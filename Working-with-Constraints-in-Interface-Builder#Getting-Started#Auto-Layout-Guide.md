@@ -261,5 +261,27 @@
 
 	- 系统会自动根据按钮或标签的内容为其命名。而其他视图，需要在身份面板中设置其"label"，或者从对象列表中双击视图，输入新名称。
 
-- 尽量使用前边（leading）和后面（trailing），而非左边（left）和右边（right）。
+- 尽量使用前边（leading）和后边（trailing），而非左边（left）和右边（right）。
+
+	我们可以通过设置视图属性[semanticContentAttribute](https://developer.apple.com/documentation/uikit/uiview/1622461-semanticcontentattribute)（iOS）以及[userInterfaceLayoutDirection](https://developer.apple.com/documentation/appkit/nsview/1483254-userinterfacelayoutdirection)（OS X），来调整前边和后边的意义。
+	
+- 在iOS中，当相对于控制器的根视图添加约束时，有规则如下：
+
+	- **水平约束**。对于大多数控件来说，紧贴留白（即偏移量为0）。系统会根据设备类型和控制器的呈现方式自动调整合适的边距。
+
+		对于横向填充整个根视图的文本对象来说，使用可读内容参照添加约束。
+		
+		对于需要完全填充根视图的子视图来说（例如背景图片），使用前边和后边添加约束。
+		
+- **垂直约束**。如果视图延伸至通栏（bar）下方，则使用上边和下边添加约束。这种情况对于滚动视图（scroll view）来说很常见，可以让内容滚动至通栏下方。然而请注意，我们可能需要通过设置滚动视图属性[contentInset](https://developer.apple.com/documentation/uikit/uiscrollview/1619406-contentinset)和[scrollIndicatorInsets](https://developer.apple.com/documentation/uikit/uiscrollview/1619427-scrollindicatorinsets)，以便内容的初始位置正确。
+
+	如果视图并未延伸至通栏下方，则相对于上下布局参照约束。
+	
+- 使用代码布局时，确保设置视图属性[translatesAutoresizingMaskIntoConstraints](https://developer.apple.com/documentation/uikit/uiview/1622572-translatesautoresizingmaskintoco)为`NO`。默认，系统会根据视图的frame及其自动缩放掩码自动创建一组约束。此时，再添加自定义约束，很可能产生冲突，从而时布局出现歧义。
+- 注意OS X和iOS计算布局的方式不同。
+	在OS X中，自动布局能够修改窗口的内容和尺寸。
+	
+	在iOS中，系统提供场景的尺寸和布局。自动布局仅能修改场景的内容。
+	
+	上述区别似乎无关紧要，但能够对我们如何布局，特别是如何区分约束优先级产生深远的影响。
 
